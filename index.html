@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Beautiful Calculator</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #fcd2d2, #d2e4fc); /* Baby pink + Baby blue */
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .calculator {
+      background: #d9e4f5; /* Soft pastel blue */
+      padding: 25px;
+      border-radius: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      width: 320px;
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    #display {
+      width: 100%;
+      height: 60px;
+      font-size: 28px;
+      text-align: right;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 12px;
+      background-color: #f7f7f7;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .buttons button {
+      height: 60px;
+      font-size: 22px;
+      border: none;
+      border-radius: 15px;
+      background-color: #f2f2f2;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .buttons button:hover {
+      background-color: #dedede;
+      transform: scale(1.05);
+    }
+
+    .buttons .operator {
+      background-color: #ffb6b9; /* Soft pink for operators */
+      color: white;
+    }
+
+    .buttons .operator:hover {
+      background-color: #ff7b89;
+    }
+
+    .buttons .equal {
+      background-color: #87ceeb; /* Soft blue for equal */
+      color: white;
+      grid-column: span 2;
+    }
+
+    .buttons .equal:hover {
+      background-color: #00bfff;
+    }
+
+    .buttons .clear {
+      background-color: #ff6f69; /* Coral clear button */
+      color: white;
+    }
+
+    .buttons .clear:hover {
+      background-color: #ff4c4c;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator">
+  <input type="text" id="display" disabled>
+  <div class="buttons">
+    <button class="clear" onclick="clearDisplay()">C</button>
+    <button onclick="appendValue('(')">(</button>
+    <button onclick="appendValue(')')">)</button>
+    <button class="operator" onclick="appendValue('/')">÷</button>
+
+    <button onclick="appendValue('7')">7</button>
+    <button onclick="appendValue('8')">8</button>
+    <button onclick="appendValue('9')">9</button>
+    <button class="operator" onclick="appendValue('*')">×</button>
+
+    <button onclick="appendValue('4')">4</button>
+    <button onclick="appendValue('5')">5</button>
+    <button onclick="appendValue('6')">6</button>
+    <button class="operator" onclick="appendValue('-')">−</button>
+
+    <button onclick="appendValue('1')">1</button>
+    <button onclick="appendValue('2')">2</button>
+    <button onclick="appendValue('3')">3</button>
+    <button class="operator" onclick="appendValue('+')">+</button>
+
+    <button onclick="appendValue('0')">0</button>
+    <button onclick="appendValue('.')">.</button>
+    <button class="equal" onclick="calculate()">=</button>
+  </div>
+</div>
+
+<script>
+  function appendValue(value) {
+    document.getElementById('display').value += value;
+  }
+
+  function clearDisplay() {
+    document.getElementById('display').value = '';
+  }
+
+  function calculate() {
+    try {
+      document.getElementById('display').value = eval(document.getElementById('display').value);
+    } catch (error) {
+      document.getElementById('display').value = "Error";
+    }
+  }
+</script>
+
+</body>
+</html>
